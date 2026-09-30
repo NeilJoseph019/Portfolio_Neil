@@ -35,95 +35,124 @@ const Background = () => {
 export default Background
 
 
+// Roughly one particle per this many CSS pixels, so density looks the same on every screen
+const PIXELS_PER_PARTICLE = 2200
+const MIN_PARTICLES = 60
+const MAX_PARTICLES = 600
+// Capping the pixel ratio keeps the canvas well under mobile canvas-size limits
+const MAX_DPR = 2
+
+class Particle {
+  x: number
+  y: number
+  size: number
+  speedX: number
+  speedY: number
+
+  constructor(width: number, height: number) {
+    this.x = Math.random() * width
+    this.y = Math.random() * height
+    this.size = Math.random() * 2 + 0.1
+    this.speedX = Math.random() * 2 - 1
+    this.speedY = Math.random() * 2 - 1
+  }
+
+  update(width: number, height: number) {
+    this.x += this.speedX
+    this.y += this.speedY
+
+    if (this.x > width) this.x = 0
+    if (this.x < 0) this.x = width
+    if (this.y > height) this.y = 0
+    if (this.y < 0) this.y = height
+  }
+
+  draw(ctx: CanvasRenderingContext2D) {
+    ctx.fillStyle = "rgba(255, 255, 255, 0.5)"
+    ctx.beginPath()
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
+    ctx.fill()
+  }
+}
+
 function Particles() {
 
     const canvasRef = useRef<HTMLCanvasElement>(null)
 
     useEffect(() => {
-        if (!canvasRef.current) return
-    
         const canvas = canvasRef.current
+        if (!canvas) return
+
         const ctx = canvas.getContext("2d")
         if (!ctx) return
-    
+
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)")
+
         const particles: Particle[] = []
-        const particleCount = window.innerWidth < 640 ? 250 : 600
+        let width = 0
+        let height = 0
+        let frameId = 0
 
-        const resizeCanvas = () => {
-          const dpr = window.devicePixelRatio || 1
-          const rect = canvas.getBoundingClientRect()
-
-          canvas.width = rect.width * dpr
-          canvas.height = rect.height * dpr
-
-          ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+        const drawFrame = () => {
+          ctx.clearRect(0, 0, width, height)
+          for (const particle of particles) {
+            particle.update(width, height)
+            particle.draw(ctx)
+          }
         }
-    
-        class Particle {
-          x: number
-          y: number
-          size: number
-          speedX: number
-          speedY: number
-    
-          constructor() {
-            this.x = Math.random() * canvas.clientWidth
-            this.y = Math.random() * canvas.clientHeight
-            this.size = Math.random() * 2 + 0.1
-            this.speedX = Math.random() * 2 - 1
-            this.speedY = Math.random() * 2 - 1
-          }
-    
-          update() {
-            this.x += this.speedX
-            this.y += this.speedY
-    
-            if (this.x > canvas.clientWidth) this.x = 0
-            if (this.x < 0) this.x = canvas.clientWidth
-            if (this.y > canvas.clientHeight) this.y = 0
-            if (this.y < 0) this.y = canvas.clientHeight
-          }
-    
-          draw() {
-            if (!ctx) return
-            ctx.fillStyle = "rgba(255, 255, 255, 0.5)"
-            ctx.beginPath()
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2)
-            ctx.fill()
+
+        // The canvas is fixed to the viewport, so its size never depends on page length
+        const resizeCanvas = () => {
+          const dpr = Math.min(window.devicePixelRatio || 1, MAX_DPR)
+          width = canvas.clientWidth
+          height = canvas.clientHeight
+
+          canvas.width = Math.round(width * dpr)
+          canvas.height = Math.round(height * dpr)
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+          const target = Math.min(
+            MAX_PARTICLES,
+            Math.max(MIN_PARTICLES, Math.round((width * height) / PIXELS_PER_PARTICLE)),
+          )
+          while (particles.length < target) particles.push(new Particle(width, height))
+          particles.length = Math.min(particles.length, target)
+
+          // Resizing clears the canvas; repaint right away so there is no blank flash
+          if (reducedMotion.matches) drawFrame()
+        }
+
+        const animate = () => {
+          drawFrame()
+          frameId = requestAnimationFrame(animate)
+        }
+
+        const start = () => {
+          cancelAnimationFrame(frameId)
+          if (reducedMotion.matches) {
+            drawFrame()
+          } else {
+            frameId = requestAnimationFrame(animate)
           }
         }
 
         resizeCanvas()
-    
-        for (let i = 0; i < particleCount; i++) {
-          particles.push(new Particle())
-        }
-    
-        let frameId = 0
+        start()
 
-        function animate() {
-          if (!ctx) return
-          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight)
-    
-          for (const particle of particles) {
-            particle.update()
-            particle.draw()
-          }
-    
-          frameId = requestAnimationFrame(animate)
-        }
-    
-        animate()
-    
-        
         window.addEventListener("resize", resizeCanvas)
+        reducedMotion.addEventListener("change", start)
         return () => {
           cancelAnimationFrame(frameId)
           window.removeEventListener("resize", resizeCanvas)
+          reducedMotion.removeEventListener("change", start)
         }
       }, [])
 
     return (
-        <canvas ref={canvasRef} className="absolute inset-0 -z-20 h-full w-full" />
+        <canvas
+          ref={canvasRef}
+          aria-hidden="true"
+          className="pointer-events-none fixed inset-0 -z-20 h-full w-full"
+        />
   )
 }
