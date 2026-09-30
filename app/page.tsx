@@ -4,6 +4,7 @@ import {useEffect, useState, useRef } from "react"
 
 import Intro from "@/app/_Sections/intro"
 import Navigator from "./_LayoutComponents/nav"
+import MobileNav from "./_LayoutComponents/mobileNav"
 import About from "./_Sections/about"
 import Background from "./_LayoutComponents/background"
 import Contact from "./_Sections/contact"
@@ -52,6 +53,8 @@ export default function Home() {
       <Background/>
 
       <Navigator activeSection={activeSection} />
+
+      <MobileNav activeSection={activeSection} />
 
       <main className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-16">
 
