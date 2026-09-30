@@ -39,7 +39,7 @@ const projectDetailsPage = async({ params }: PageProps) => {
   if (!project) return notFound()
 
   return (
-    <article className="min-h-screen p-5 bg-background text-foreground/85 z-0 relative">
+    <article className="min-h-screen p-4 sm:p-5 bg-background text-foreground/85 z-0 relative">
 
         <BackgroundWithoutParticles/>
 
@@ -65,20 +65,20 @@ const projectDetailsPage = async({ params }: PageProps) => {
 
         </div>
 
-        <div className="grid md:grid-cols-3 mt-2.5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 mt-2.5">
 
-            <div className="md:col-span-2 p-5 border">
-                <div className="p-10 h-full w-full">
+            <div className="lg:col-span-2 min-w-0 p-3 sm:p-5 border">
+                <div className="px-9 py-4 sm:p-10 h-full w-full">
                     <Carousel>
                     <CarouselContent>
                         {
                             project.images.map((img, index)=>(
                                 <CarouselItem key={index} className="flex justify-center items-center">
-                                    <div className="relative w-full h-70">
+                                    <div className="relative w-full h-56 sm:h-70">
                                         <Image
                                         src={img}
                                         alt={`image-${index}`}
-                                        sizes="400px"
+                                        sizes="(min-width: 1024px) 50vw, 90vw"
                                         fill
                                         className="object-contain"
                                         priority
@@ -88,12 +88,12 @@ const projectDetailsPage = async({ params }: PageProps) => {
                             ) )
                         }
                     </CarouselContent>
-                    <CarouselPrevious />
-                    <CarouselNext />
+                    <CarouselPrevious className="-left-8 sm:-left-12" />
+                    <CarouselNext className="-right-8 sm:-right-12" />
                     </Carousel>
                 </div>
             </div>
-            <div className="">
+            <div className="min-w-0">
                 <div className="border p-2.5">
                     <h5 className="font-mono m-1.5">Name:</h5>
                     <p>{project.title}</p>
@@ -101,13 +101,13 @@ const projectDetailsPage = async({ params }: PageProps) => {
                 <div className="border p-2.5">
                     <h5 className="font-mono m-1.5">Type:</h5>
                     { project.type.map((item, index)=> (
-                        <Badge key={index} variant={"outline"} className="mx-1.5">{item}</Badge>
+                        <Badge key={index} variant={"outline"} className="m-1">{item}</Badge>
                     )) }
                 </div>
                 <div className="border p-2.5">
                     <h5 className="font-mono m-1.5">Stack:</h5>
                     { project.stack.map((item, index)=> (
-                        <Badge key={index} variant={"outline"} className="mx-1.5">{item}</Badge>
+                        <Badge key={index} variant={"outline"} className="m-1">{item}</Badge>
                     )) }
                 </div>
                 <div className="border p-2.5">
@@ -117,7 +117,7 @@ const projectDetailsPage = async({ params }: PageProps) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="hover:underline">
-                        <p>{project.sourceCode}</p>
+                        <p className="break-all">{project.sourceCode}</p>
                     </Link>
                 </div>
                 {
@@ -139,7 +139,7 @@ const projectDetailsPage = async({ params }: PageProps) => {
 
         </div>
 
-        <div className="mt-3">
+        <div className="mt-3 min-w-0">
             <div className="border p-2.5">
                 <h5 className="font-mono m-1.5">Overview:</h5>
                 <p >{project.overview}</p>

@@ -33,7 +33,7 @@ const ArticlePage = async ({params }: slugProp) => {
   
 
   return (
-    <article className="min-h-screen p-5 bg-background text-foreground/85 font-mono z-0 relative">
+    <article className="min-h-screen p-4 sm:p-5 bg-background text-foreground/85 font-mono z-0 relative">
 
       <BackgroundWithoutParticles/>
 
@@ -57,7 +57,7 @@ const ArticlePage = async ({params }: slugProp) => {
       </div>
 
 
-      <div className={styles.content} 
+      <div className={`${styles.content} max-w-3xl mx-auto`} 
       dangerouslySetInnerHTML={{ __html: html }} />
 
     </article>

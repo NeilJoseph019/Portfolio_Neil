@@ -16,21 +16,21 @@ const About = ({sectionsRef, index} : aboutProps) => {
     ref={(el)=>{
         (sectionsRef.current[index] = el)}
     } 
-    className="min-h-screen flex items-center opacity-0 transition-opacity duration-700 z-0"
+    className="min-h-screen flex items-center py-16 sm:py-20 opacity-0 transition-opacity duration-700 z-0"
     >
 
-        <div className='grid grid-cols-1 md:grid-cols-3 gap-12 sm:gap-16'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 gap-10 sm:gap-16 w-full'>
 
 
             <div className='flex flex-col justify-center items-center gap-5'> 
                 <h2 className="text-3xl sm:text-4xl font-light">About Me</h2>
                 
-                <div className='profile_animate w-62.5 h-62.5 flex items-center justify-center overflow-hidden'>
-                <Image src={'/profile_pic_NJ.jpg'} alt='profile picture' width={350} height={350}/>
+                <div className='profile_animate w-56 h-56 sm:w-62.5 sm:h-62.5 shrink-0 flex items-center justify-center overflow-hidden'>
+                <Image src={'/profile_pic_NJ.jpg'} alt='profile picture' width={350} height={350} className='w-full h-full object-cover'/>
                 </div>
             </div>
 
-            <div className='col-span-2'>
+            <div className='lg:col-span-2'>
                 <p className="text-md mb-5 text-center">Meet the Code Whisperer: Translating Caffeine into Functioning solutions</p>
                 <p className='text-lg sm:text-xl text-muted-foreground leading-relaxed mb-2'>
                  
