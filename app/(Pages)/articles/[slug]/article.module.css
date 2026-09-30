@@ -106,24 +106,40 @@
 
 /* Links */
 .content a {
-  color: #2563eb;
+  color: #1d4ed8;
   text-decoration: underline;
   text-underline-offset: 3px;
   font-weight: 500;
 }
 
 .content a:hover {
-  color: #1d4ed8;
+  color: #1e40af;
+}
+
+:global(.dark) .content a {
+  color: #60a5fa;
+}
+
+:global(.dark) .content a:hover {
+  color: #93c5fd;
 }
 
 /* Strong / Emphasis */
 .content strong {
   font-weight: 650;
-  color: #66d28c;
+  color: #15803d;
 }
 
 .content em {
-  color: #787a7f;
+  color: #52555c;
+}
+
+:global(.dark) .content strong {
+  color: #66d28c;
+}
+
+:global(.dark) .content em {
+  color: #9a9da3;
 }
 
 /* Blockquote (Notion-style callout quote) */
@@ -139,13 +155,18 @@
 
 /* Inline Code */
 .content code {
-  background: #2f3135;
+  background: #eceff3;
   padding: 0.15rem 0.4rem;
   border-radius: 6px;
   font-size: 0.95rem;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-  color: #dc2626;
+  color: #b91c1c;
+}
+
+:global(.dark) .content code {
+  background: #2f3135;
+  color: #f87171;
 }
 
 /* Code Blocks */
@@ -160,7 +181,8 @@
   line-height: 1.6;
 }
 
-.content pre code {
+.content pre code,
+:global(.dark) .content pre code {
   background: transparent;
   padding: 0;
   color: inherit;
@@ -182,7 +204,7 @@
 .content hr {
   margin: 2.5rem 0;
   border: none;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border);
 }
 
 /* Tables */
@@ -248,13 +270,14 @@
   overflow-wrap: normal;
 }
 
-.content table {
-  display: block;
-  max-width: 100%;
-  overflow-x: auto;
-}
-
 @media (max-width: 640px) {
+  /* Only on phones: let wide tables scroll sideways instead of overflowing the page */
+  .content table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
   .content h1 {
     font-size: 1.75rem;
   }

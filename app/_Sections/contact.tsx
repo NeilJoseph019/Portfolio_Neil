@@ -44,10 +44,10 @@ const Contact = ({sectionsRef, index} : contactProps) => {
 
             <div className="space-y-4">
                 <div className="flex flex-col items-center space-y-4">
-                  <div className="flex items-center space-x-2 p-3 rounded-md border border-gray-500 bg-stone-950/10 w-full max-w-md">
+                  <div className="flex items-center space-x-2 p-3 rounded-md border border-muted-foreground/60 bg-foreground/5 w-full max-w-md">
                     <span className="text-sm font-mono flex-1 truncate">{email}</span>
                     <Button variant="outline" size="sm" onClick={copyToClipboard} aria-label="Copy email to clipboard">
-                      {copied ? "Copied!" : <img src="/copyToClipboard.svg" alt="Copy to clipboard" className="w-4 h-4" />}
+                      {copied ? "Copied!" : <img src="/copyToClipboard.svg" alt="Copy to clipboard" className="w-4 h-4 dark:invert" />}
                     </Button>
                   </div>
                 </div>

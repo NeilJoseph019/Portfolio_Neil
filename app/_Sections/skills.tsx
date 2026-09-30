@@ -63,7 +63,7 @@ const Skills = ({sectionsRef, index} : skillProps) => {
             softSkills.map((item, index) => (
               <span
               key={index}
-              className="px-3 py-1.5 text-sm text-center border border-border rounded-full hover:border-muted-foreground/50 hover:text-emerald-500 transition-colors duration-300"
+              className="px-3 py-1.5 text-sm text-center border border-border rounded-full hover:border-muted-foreground/50 hover:text-emerald-600 dark:hover:text-emerald-500 transition-colors duration-300"
               >
                 {item}
               </span>

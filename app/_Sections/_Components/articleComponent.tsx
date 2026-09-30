@@ -21,7 +21,7 @@ const ArticleComponent = () => {
                   {/* <span>{post.readTime}</span> */}
                 </div>
 
-                <h3 className="text-lg sm:text-xl font-medium group-hover:text-emerald-500 transition-colors duration-300">
+                <h3 className="text-lg sm:text-xl font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition-colors duration-300">
                   {post.frontmatter.Title}
                 </h3>
 

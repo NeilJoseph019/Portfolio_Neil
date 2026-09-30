@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/app/providers/themeProvider"
 import { ArticlesProvider } from "./providers/articlesProvider";
 import { getSortedArticles } from "./_utils/getArticle";
+import ThemeToggle from "./_LayoutComponents/themeToggle";
 
 
 const geistSans = Geist({
@@ -41,6 +42,7 @@ export default function RootLayout({
              <ArticlesProvider initialSortedData={sortedData}>
               {children}
              </ArticlesProvider>
+             <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>

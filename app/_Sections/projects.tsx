@@ -56,7 +56,7 @@ const Projects = ({sectionsRef, index} : projectProps) => {
                     <div className="space-y-6">
                     <div className="flex items-start justify-between gap-4">
                         <div className="space-y-2 flex-1">
-                            <h3 className="text-xl sm:text-2xl font-medium group-hover:text-emerald-500 transition-colors duration-300">
+                            <h3 className="text-xl sm:text-2xl font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition-colors duration-300">
                                 {project.title}
                             </h3>
                             <p className="text-xs text-muted-foreground font-mono">{project.year}</p>

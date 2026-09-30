@@ -36,7 +36,7 @@ const articlePage = () => {
           <Link
           href={'/'}
           >
-            <button className='cursor-pointer border hover:border-emerald-600/50 rounded-xl p-2 text-center text-stone-300 hover:text-white '>
+            <button className='cursor-pointer border hover:border-emerald-600/50 rounded-xl p-2 text-center text-muted-foreground hover:text-foreground'>
               Back
             </button>
           </Link>
@@ -60,7 +60,7 @@ const articlePage = () => {
                       </span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-emerald-500 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-medium group-hover:text-emerald-600 dark:group-hover:text-emerald-500 transition-colors duration-300">
                       {data.frontmatter.Title}
                     </h3>
 

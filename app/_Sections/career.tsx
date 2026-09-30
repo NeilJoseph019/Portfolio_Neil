@@ -46,19 +46,19 @@ const Career = ({sectionsRef, index} : careerProps) => {
 
                 <div className="mt-1">
                   { entry.type === 'education' ? (
-                    <span className="inline-flex items-center px-2 py-1 gap-2 rounded-full text-xs font-medium bg-gray-100/85 text-gray-800">
-                      <img src="/education.svg" alt="Education Icon" className="w-4 h-4" /> Education
+                    <span className="inline-flex items-center px-2 py-1 gap-2 rounded-full text-xs font-medium bg-foreground/10 text-foreground">
+                      <img src="/education.svg" alt="Education Icon" className="w-4 h-4 dark:invert" /> Education
                     </span>
                   ) : (
-                    <span className="inline-flex items-center px-2 py-1 gap-2 rounded-full text-xs font-medium bg-gray-100/85 text-gray-800">
-                      <img src="/experience.svg" alt="Education Icon" className="w-4 h-4" /> Experience
+                    <span className="inline-flex items-center px-2 py-1 gap-2 rounded-full text-xs font-medium bg-foreground/10 text-foreground">
+                      <img src="/experience.svg" alt="Experience Icon" className="w-4 h-4 dark:invert" /> Experience
                     </span>
                   )
                   }
                 </div>
               </div>
 
-              <div className="lg:col-span-4 flex flex-wrap gap-2 lg:justify-end mt-2 lg:mt-0">
+              <div className="lg:col-span-4 flex flex-wrap content-start gap-2 lg:justify-end mt-2 lg:mt-0">
                 {entry.tech.map((tech) => (
                   <span
                     key={tech}

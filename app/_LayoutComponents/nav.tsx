@@ -17,7 +17,7 @@ const Navigator = ({activeSection} : NavProps) => {
                 key={index}
                 onClick={() => document.getElementById(section)?.scrollIntoView({ behavior: "smooth" })}
                 className={`w-2 h-8 rounded-full cursor-pointer transition-all duration-500 relative ${
-                activeSection === section ? "bg-white" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
+                activeSection === section ? "bg-foreground" : "bg-muted-foreground/30 hover:bg-muted-foreground/60"
                 }`}
                 aria-label={`Navigate to ${section}`}
             > 
