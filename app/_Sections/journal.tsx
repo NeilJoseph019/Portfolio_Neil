@@ -20,7 +20,7 @@ const Journal = ({sectionsRef, index} : journalProps) => {
     >
       <div className="space-y-12 sm:space-y-16">
 
-        <div className='flex justify-between items-center'>
+        <div className='flex justify-between items-center gap-4'>
             <h2 className="text-3xl sm:text-4xl font-light">Recent Thoughts</h2>
             <Link href={"/articles"}>
               <Button variant={'outline'} className='text-muted-foreground font-mono font-light cursor-pointer'>
@@ -29,7 +29,7 @@ const Journal = ({sectionsRef, index} : journalProps) => {
             </Link>
         </div>
 
-        <div className="grid gap-6 sm:gap-8 lg:grid-cols-2">
+        <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
           <ArticleComponent/>
         </div>
       </div>

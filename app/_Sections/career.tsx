@@ -30,7 +30,7 @@ const Career = ({sectionsRef, index} : careerProps) => {
               className="group grid lg:grid-cols-12 gap-4 sm:gap-8 py-6 sm:py-8 border-b-2"
             >
               <div className="lg:col-span-2">
-                <div className="text-xl sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
+                <div className="text-lg sm:text-2xl font-light text-muted-foreground group-hover:text-foreground transition-colors duration-500">
                   {entry.period}
                 </div>
               </div>
@@ -39,7 +39,7 @@ const Career = ({sectionsRef, index} : careerProps) => {
                 <div>
                   <h3 className="text-lg sm:text-xl font-medium">{entry.title}</h3>
                   <hr className='m-3'/>
-                  <p className="text-foreground/85 leading-relaxed max-w-lg">{entry.description}</p>
+                  <p className="text-foreground/85 leading-relaxed max-w-lg wrap-break-word">{entry.description}</p>
                   <hr className='m-3'/>
                   <div className="text-muted-foreground mt-2">{entry.location}</div>
                 </div>

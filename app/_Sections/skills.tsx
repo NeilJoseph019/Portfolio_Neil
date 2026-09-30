@@ -23,16 +23,16 @@ const Skills = ({sectionsRef, index} : skillProps) => {
             <div className="text-sm text-muted-foreground font-mono">TECHNICAL TOOLKIT</div>
         </div>
 
-      <div className='grid gap-10 lg:grid-cols-3 '>
+      <div className='grid grid-cols-1 gap-10 lg:grid-cols-3'>
 
-        <div className="lg:col-span-2 grid gap-5 sm:gap-7 lg:grid-cols-2 ">
+        <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-7 min-w-0">
 
           {
             techSkills.map((techS, index)=>(
               
               <article
               key={index}
-              className="group p-6 sm:p-8 border border-muted-foreground rounded-lg cursor-pointer space-y-6"
+              className="group min-w-0 p-6 sm:p-8 border border-muted-foreground rounded-lg cursor-pointer space-y-6"
               >
                   <h3 className="text-sm font-medium font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300 tracking-wider">
                       {techS.title}
@@ -54,7 +54,7 @@ const Skills = ({sectionsRef, index} : skillProps) => {
 
         </div>
 
-        <div className='flex lg:flex-col gap-5 items-center group border border-muted-foreground rounded-lg p-6 sm:p-8'>
+        <div className='flex flex-wrap lg:flex-col gap-3 sm:gap-5 items-center lg:self-start min-w-0 group border border-muted-foreground rounded-lg p-6 sm:p-8'>
 
           <h3 className="text-sm font-medium font-mono text-muted-foreground group-hover:text-foreground transition-colors duration-300 tracking-wider">
               SOFT SKILLS

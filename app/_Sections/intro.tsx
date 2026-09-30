@@ -12,7 +12,7 @@ const Intro = ({sectionsRef,index } : introProps) => {
     ref={(el)=>{
         (sectionsRef.current[index] = el)}
     } 
-    className="min-h-screen flex items-center opacity-0 transition-opacity duration-700 z-0"
+    className="min-h-screen flex items-center py-16 opacity-0 transition-opacity duration-700 z-0"
     >
         <div className="grid lg:grid-cols-5 gap-12 sm:gap-16 w-full">
             <div className="lg:col-span-3 space-y-6 sm:space-y-8">

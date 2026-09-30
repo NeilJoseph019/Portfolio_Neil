@@ -47,7 +47,7 @@ function Particles() {
         if (!ctx) return
     
         const particles: Particle[] = []
-        const particleCount = 600
+        const particleCount = window.innerWidth < 640 ? 250 : 600
 
         const resizeCanvas = () => {
           const dpr = window.devicePixelRatio || 1
@@ -78,9 +78,9 @@ function Particles() {
             this.x += this.speedX
             this.y += this.speedY
     
-            if (this.x > canvas.width) this.x = 0
+            if (this.x > canvas.clientWidth) this.x = 0
             if (this.x < 0) this.x = canvas.clientWidth
-            if (this.y > canvas.height) this.y = 0
+            if (this.y > canvas.clientHeight) this.y = 0
             if (this.y < 0) this.y = canvas.clientHeight
           }
     
@@ -99,23 +99,28 @@ function Particles() {
           particles.push(new Particle())
         }
     
+        let frameId = 0
+
         function animate() {
           if (!ctx) return
-          ctx.clearRect(0, 0, canvas.width, canvas.height)
+          ctx.clearRect(0, 0, canvas.clientWidth, canvas.clientHeight)
     
           for (const particle of particles) {
             particle.update()
             particle.draw()
           }
     
-          requestAnimationFrame(animate)
+          frameId = requestAnimationFrame(animate)
         }
     
         animate()
     
         
         window.addEventListener("resize", resizeCanvas)
-        return () => window.removeEventListener("resize", resizeCanvas)
+        return () => {
+          cancelAnimationFrame(frameId)
+          window.removeEventListener("resize", resizeCanvas)
+        }
       }, [])
 
     return (

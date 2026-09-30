@@ -27,7 +27,7 @@ const articlePage = () => {
   
 
   return (
-    <div className="min-h-screen m-5 p-6 sm:px-8 lg:px-16 bg-background text-foreground z-0 relative">
+    <div className="min-h-screen p-4 sm:p-8 lg:px-16 bg-background text-foreground z-0 relative">
 
       <BackgroundWithoutParticles/>
 
@@ -49,7 +49,7 @@ const articlePage = () => {
 
               <article
               key={index}
-              className="group p-6 mx-5 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
+              className="group w-full max-w-4xl p-5 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500 hover:shadow-lg cursor-pointer"
               >
 
                 <div className='grid md:grid-cols-3 gap-3.5'>
@@ -105,6 +105,7 @@ const articlePage = () => {
                       alt='image'
                       height={400}
                       width={400}
+                      className='w-full max-w-50 sm:max-w-xs md:max-w-full h-auto object-contain'
                       />
                   </div>
 

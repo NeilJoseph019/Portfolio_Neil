@@ -8,7 +8,7 @@ interface NavProps {
 const Navigator = ({activeSection} : NavProps) => {
 
   return (
-    <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden lg:block">
+    <nav className="fixed left-8 top-1/2 -translate-y-1/2 z-10 hidden xl:block">
         <div className="flex flex-col gap-4">
             {["Intro", "About", "Skills", "Projects", "Career", "Journals", "Contact" ].map((section, index) => (
             <button

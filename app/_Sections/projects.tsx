@@ -38,7 +38,7 @@ const Projects = ({sectionsRef, index} : projectProps) => {
     >
         <div className="space-y-12 sm:space-y-16">
 
-            <div className='flex justify-between items-center'>
+            <div className='flex justify-between items-center gap-4'>
                 <h2 className="text-3xl sm:text-4xl font-light">Projects</h2>
                 <Link href={"/projects"}>
                     <Button variant={'outline'} className='text-muted-foreground font-mono font-light cursor-pointer'>
@@ -51,7 +51,7 @@ const Projects = ({sectionsRef, index} : projectProps) => {
                 { sortedData.map((project, index) => (
                 <article
                     key={index}
-                    className="group p-6 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500"
+                    className="group min-w-0 p-5 sm:p-8 border border-border rounded-lg hover:border-muted-foreground/50 transition-all duration-500"
                 >
                     <div className="space-y-6">
                     <div className="flex items-start justify-between gap-4">
